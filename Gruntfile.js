@@ -8,6 +8,22 @@ var folderMount = function folderMount(connect, point) {
   return connect.static(path.resolve(point));
 };
 
+var jsfiles = [
+  'bootstrap-transition.js',
+  'bootstrap-alert.js',
+  'bootstrap-button.js',
+  'bootstrap-carousel.js',
+  'bootstrap-collapse.js',
+  'bootstrap-dropdown.js',
+  'bootstrap-modal.js',
+  'bootstrap-tooltip.js',
+  'bootstrap-popover.js',
+  'bootstrap-scrollspy.js',
+  'bootstrap-tab.js',
+  'bootstrap-typeahead.js',
+  'bootstrap-affix.js' 
+].map(function (file) { return "source/js/" + file; });
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -53,7 +69,7 @@ module.exports = function(grunt) {
           compile: true
         },
         files: {
-          'build/css/blueline.css': ['source/less/blueline.less']
+          'build/blueline.css': ['source/less/blueline.less']
         }
       },
       compressed: {
@@ -62,7 +78,25 @@ module.exports = function(grunt) {
           compress: true 
         },
         files: {
-          'build/css/blueline.min.css': ['source/less/blueline.less']
+          'build/blueline.min.css': ['source/less/blueline.less']
+        }
+      }
+    },
+
+    // Uglify
+    uglify: {
+      uncompressed: {
+        options: {
+          beautify: true,
+          preserveComments: true
+        },
+        files: {
+          'build/blueline.js': jsfiles
+        }
+      },
+      compressed: {
+        files: {
+          'build/blueline.min.js': jsfiles
         }
       }
     }
@@ -71,12 +105,13 @@ module.exports = function(grunt) {
   // Load
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-regarde');
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-open');
 
   // Tasks
-  grunt.registerTask('build', ['recess']);
+  grunt.registerTask('build', ['recess', 'uglify']);
   grunt.registerTask('server', ['livereload-start', 'connect', 'regarde']);
   grunt.registerTask('livereload-less', function () {
     // In order to see the changed, we'll need to push less.js into the list of changed files
