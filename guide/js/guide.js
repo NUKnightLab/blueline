@@ -9,11 +9,15 @@ $(function () {
 
       // Insert the new code block
       $pre
-        .text( $self.html() )
-        .appendTo( $self );
+        .text( $self.html().trim().replace(/    /g, "") )
+        .appendTo( $self )
+        .addClass("html")
+        .each(function(i, e) {hljs.highlightBlock(e)});
   
       // Make this example active
       $self.addClass("active");
+
+      return false;
   });
 
   $("nav a").on("click", function (e) {
