@@ -1,0 +1,7 @@
+/* Config file for Knight Lab */
+{
+    "s3": {
+      "key": "",
+      "secret": ""
+    }
+}

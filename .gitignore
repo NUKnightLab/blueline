@@ -10,5 +10,8 @@
 # Ignore the Node modules
 /node_modules
 
+# Knight Lab config file
+/knightlab.json
+
 # Other
 .DS_Store
