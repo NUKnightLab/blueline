@@ -28,6 +28,16 @@ To begining developing Blueline:
 
 Files located in the `source` directory are stylesheets and assets for Blueline itself. Files located in the `guide` directory are specific to the style guide.
 
-If you would like to concatenate and minify the Blueline stylesheet for use elsewhere:
+### Building
 
     grunt build
+
+### Deploying to S3
+    
+    # You'll only need to do this once:
+    #
+    # Obtain AWS security credentials, then edit your config file
+    cp knightlab.json.example knightlab.json
+
+    # Deploy
+    grunt deploy
