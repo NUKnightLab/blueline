@@ -26,10 +26,18 @@ var jsfiles = [
 
 module.exports = function(grunt) {
 
+  // configurable paths
+  var bluelineConfig = {
+      source: 'source',
+      guide: 'guide',
+      build: 'build'
+  };
+
   // Project configuration.
   grunt.initConfig({
-    // Package info
     pkg: grunt.file.readJSON('package.json'),
+    blueline: bluelineConfig,
+    knightlab: grunt.file.readJSON('knightlab.json'),
 
     // Server
     connect: {
@@ -46,7 +54,7 @@ module.exports = function(grunt) {
     // Open
     open: { 
       dev: {
-        path: 'http://localhost:' + port + '/guide/'
+        path: 'http://localhost:' + port + '/<%= blueline.guide %>/'
       }
     },
 
@@ -69,7 +77,8 @@ module.exports = function(grunt) {
           compile: true
         },
         files: {
-          'build/blueline.css': ['source/less/blueline.less']
+          '<%= blueline.build %>/blueline.css': ['<%= blueline.source %>/less/blueline.less'],
+          '<%= blueline.build %>/css/guide.css': ['<%= blueline.guide %>/less/guide.less']
         }
       },
       compressed: {
@@ -78,7 +87,7 @@ module.exports = function(grunt) {
           compress: true 
         },
         files: {
-          'build/blueline.min.css': ['source/less/blueline.less']
+          '<%= blueline.build %>/blueline.min.css': ['<%= blueline.source %>/less/blueline.less']
         }
       }
     },
@@ -91,27 +100,90 @@ module.exports = function(grunt) {
           preserveComments: true
         },
         files: {
-          'build/blueline.js': jsfiles
+          '<%= blueline.build %>/blueline.js': jsfiles
         }
       },
       compressed: {
         files: {
-          'build/blueline.min.js': jsfiles
+          '<%= blueline.build %>/blueline.min.js': jsfiles
         }
       }
-    }
+    },
+
+    // S3
+    s3: {
+      options: {
+        key: '<%= knightlab.s3.key %>',
+        secret: '<%= knightlab.s3.secret %>',
+        bucket: 'blueline.knightlab.com',
+        access: 'public-read',
+      },
+      dist: {
+        upload: [
+          {
+            src: '<%= blueline.build %>/**',
+            dest: '/',
+            rel: '<%= blueline.build %>'
+          }
+        ]
+      }
+    },
+
+    // Usemin
+    usemin: {
+      html: ['<%= blueline.build %>/index.html'],
+      options: {
+        dirs: ['<%= blueline.build %>']
+      }
+    },
+
+    // Copy
+    copy: {
+      dist: {
+        files: [
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%= blueline.guide %>',
+            dest: '<%= blueline.build %>',
+            src: [
+              '.htaccess',
+              '*.{ico,txt,html}',
+              '{css,img,js}/**'
+            ]
+          },
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%= blueline.source %>',
+            dest: '<%= blueline.build %>',
+            src: ['img/**']
+          }
+        ]
+      }
+    },
+
+    // Clean
+    clean: {
+      dist: '<%= blueline.build %>'
+    },
   });
 
   // Load
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-regarde');
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-open');
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-s3');
 
   // Tasks
-  grunt.registerTask('build', ['recess', 'uglify']);
+  grunt.registerTask('build', ['clean',  'copy', 'recess', 'uglify', 'usemin']);
+  grunt.registerTask('deploy', ['build', 's3']);
   grunt.registerTask('server', ['livereload-start', 'connect', 'regarde']);
   grunt.registerTask('livereload-less', function () {
     // In order to see the changed, we'll need to push less.js into the list of changed files
