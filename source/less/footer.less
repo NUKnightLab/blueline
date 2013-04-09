@@ -1,0 +1,310 @@
+footer {
+  font-family: @sansFontFamily;
+  background-color: #F3F3F3;
+  border-bottom: 12px solid #520063;
+  padding-top: 10px;
+	#footer-wrapper {
+	    margin: 0;
+	    padding: 0;
+	}
+  address {
+      color: #212121;
+      float: left;
+      width: 281px;
+      font-size: 15px;
+    .address-name {
+      background: url("../img/footer-logosheet.png") no-repeat scroll -46px -11px transparent;
+      display: block;
+      height: 71px;
+      margin-bottom: 21px;
+      padding-left: 0;
+      text-indent: -9999px;
+      width: 280px;
+    }
+    span {
+      &.address,
+      &.tel {
+        border: medium none;
+        display: block;
+        line-height: 1.3em;
+        padding-left: 80px;
+      }
+      &.url,
+      &.geo,
+      &.address-country {
+        display: none;
+      }
+    }
+    a, 
+    &.url {
+      border: medium none;
+      display: block;
+      line-height: 1.3em;
+      padding-left: 80px;
+    }
+    a.url {
+      display: none;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+    .notes a {
+      color: @linkColor;
+    }
+    i {
+      color: #ca4d1d;
+      font-style: normal;
+    }
+  }
+  ul {
+    list-style: none outside none;
+    margin: 0;
+    &.social {
+      margin: 25px auto 0;
+      padding: 0px;
+      width: 40px;
+      float: right;
+      li {
+        float: left;
+        font-size: 2.7em;
+        line-height: 1.4em;
+        padding-bottom: 3px;
+        a:hover {
+          text-decoration: none;
+          opacity: .9;
+        }
+      }
+    }
+  }
+  #footer-outer {
+    border-top: 4px solid #474748;
+    background-image: linear-gradient(top, rgb(50,33,63) 14%, rgb(83,0,99) 66%, rgb(83,0,99) 44%);
+    background-image: -o-linear-gradient(top, rgb(50,33,63) 14%, rgb(83,0,99) 66%, rgb(83,0,99) 44%);
+    background-image: -moz-linear-gradient(top, rgb(50,33,63) 14%, rgb(83,0,99) 66%, rgb(83,0,99) 44%);
+    background-image: -webkit-linear-gradient(top, rgb(50,33,63) 14%, rgb(83,0,99) 66%, rgb(83,0,99) 44%);
+    background-image: -ms-linear-gradient(top, rgb(50,33,63) 14%, rgb(83,0,99) 66%, rgb(83,0,99) 44%);
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.14, rgb(50,33,63)),
+      color-stop(0.66, rgb(83,0,99)),
+      color-stop(0.44, rgb(83,0,99))
+      );
+    height: 14px;
+  }
+  #footer {
+    max-width: 1140px;
+    clear: both;
+    margin: 0 auto;
+    padding: 0 25px;
+  }
+  .ie9 #footer-outer {
+    background-image: none;
+    background-color: #530063;
+  }
+  .copyright {
+    clear: both;
+    color: #A8A4A3;
+    font-size: 15px;
+    padding-bottom: 20px;
+  }
+  .notes {
+    font-size: 14px;
+    line-height: 1.4em;
+    margin: 28px;
+    text-align: left;
+    display: none;
+  }
+  ul.logos {
+    border-left: 1px solid #CCCCCC;
+    margin-top: 25px;
+    li {
+      display: block;
+      float: right;
+      &:hover{
+        opacity: .85;
+      }
+      &:nth-child(1n+4) {
+        float: none;
+        clear: left;
+      }
+      &:nth-child(1),
+      &:nth-child(3) {
+        border-left: 1px solid #CCCCCC;
+      }
+      &:nth-child(n+5) {
+        float: left;
+        clear: none;
+      }
+      &:nth-child(1n+6) {
+        clear: none;
+        float: left;
+      }
+      &:nth-child(10n+2) {
+        clear: right;
+      }
+      a {
+        background: url("../img/footer-logosheet.png") no-repeat scroll center top transparent;
+        display: block;
+        text-indent: -9999px;
+        &.northwestern{
+          background-position: -42px -106px;
+          height: 174px;
+          margin-bottom: 17px;
+          margin-left: 30px;
+          width: 290px;
+        }
+        &.knightfoundation{
+          background-position: 22px -283px;
+          height: 83px;
+          margin-bottom: 23px;
+          margin-top: 14px;
+          width: 383px;
+        }
+        &.medill{
+          background-position: -221px -385px;
+          height: 52px;
+          margin-bottom: 20px;
+          margin-left: 11px;
+          width: 111px;
+        }
+        &.mccormick{
+          background-position: -19px -385px;
+          float: right;
+          height: 52px;
+          margin-bottom: 20px;
+          width: 185px;
+        }
+        &.mccormickfound{
+          background-position: -6px -462px;
+          height: 68px;
+          margin-bottom: 51px;
+          margin-right: 34px;
+          margin-top: 23px;
+          width: 218px;
+        }
+        &.nsf{
+          background-position: right -448px;
+          float: right;
+          height: 84px;
+          margin: 0;
+          width: 131px;
+        }
+      }
+    }
+  } 
+}
+
+
+
+
+@media screen and (max-width: 1140px) {
+  footer ul.logos,
+  footer ul.logos li  {
+    border-left: none !important;
+  }
+}
+@media screen and (max-width: 1040px) {
+  footer ul.logos li a.northwestern {
+    margin-left: 0px;
+  }
+}
+@media screen and (max-width: 1090px) {
+  footer ul.social li {
+    display: inline;
+    float: none;
+  }
+  footer ul {
+    clear: both;
+    margin-bottom: 40px;
+  }
+  footer ul.logos {
+    display: none;
+  }
+  footer ul.logos li{
+    display: block;
+    float: none;
+  }
+  footer .notes {
+    display: block;
+  }
+  footer ul.logos li:first-child,
+  footer ul.logos li a.northwestern,
+  footer ul.logos li a.knightfoundation,
+  footer ul.logos li a.nsf,
+  footer ul.logos li a.mccormick,
+  footer ul.logos li a.mccormickfound,
+  footer ul.logos li a.medill  {
+    margin: 20px auto;
+    clear: both;
+    float: none;
+  }
+  footer ul.logos li a:first-child.northwestern{
+    margin: -30px auto -20px;
+  }
+  footer ul.logos li a.knightfoundation {
+    margin: 0px auto 20px;
+  }
+  footer ul.logos li a.nsf  {
+    margin: 0 auto 20px;
+  }
+  footer ul.social {
+    width: 294px;
+    padding-right: 0;
+    float: none;
+  }
+  address {
+    margin: 30px auto;
+    padding-left: 0px;
+    width: 280px;
+    float: none;
+    text-align: left;
+  }
+  .copyright {
+    padding-left: 16px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .copyright {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 650px) {
+  #footer {
+    padding: 0;
+  }
+  .copyright {
+    padding-left: 0px;
+  }
+  ul {
+    margin-left: 0.5em;
+  }
+  footer ul.logos li a.knightfoundation {
+    background-position: 0 -744px;
+    width:300px;
+  }
+  .address-name {
+    margin-top: 80px;
+  }
+
+  footer ul.social {
+    margin: -284px auto 234px;
+  }
+
+}
+
+@media screen and (min-width: 992px) and (max-width: 1115px) {
+  footer ul.logos li a.northwestern {
+    margin-left: 0px;
+  }
+  footer ul.logos li a.mccormick {
+    background-position: -34px -385px;
+    float: right;
+    height: 52px;
+    margin-bottom: 20px;
+    width: 167px;
+  }
+}
+
