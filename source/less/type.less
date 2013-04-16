@@ -215,15 +215,20 @@ abbr.initialism {
 
 // Blockquotes
 blockquote {
-  font-family: @sansFontFamily;
-  padding: 0 0 0 15px;
   margin: 0 0 @baseLineHeight;
-  border-left: 5px solid @grayLighter;
+  border-left: 4px solid @grayLighter;
+  background-color: #FAFAFA;
+  font-family: @serifFontFamily;
+  font-size: 1.1em;
+  font-style: italic;
+  line-height: 1.5em;
+  padding: 1em 1em 0;
+  overflow: auto;
   p {
-    margin-bottom: 0;
-    font-size: @baseFontSize * 1.25;
-    font-weight: 300;
-    line-height: 1.25;
+    margin: 3px 0 22px;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
   }
   small {
     display: block;
@@ -255,6 +260,20 @@ blockquote {
     }
   }
 }
+*[data-pullquote]:before {
+    border-bottom: medium double #DDDDDD;
+    border-top: medium double #DDDDDD;
+    color: #CA4D1D;
+    content: attr(data-pullquote);
+    float: right;
+    font-family: @altSerifFontFamily;
+    font-size: 25px;
+    font-style: italic;
+    line-height: 1.3em;
+    margin: 7px 0 0.5em 35px;
+    padding: 22px 1px 20px;
+    width: 34%;
+}
 
 // Quotes
 q:before,
@@ -262,6 +281,22 @@ q:after,
 blockquote:before,
 blockquote:after {
   content: "";
+}
+
+.editor-note,
+.editors-note  {
+  background-color: @grayLighter;
+  border-top: 4px solid #CA4D1D;
+  color: @gray;
+  font-family: @sansFontFamily;
+  line-height: 1.5em;
+  padding: 18px 24px;
+  margin: 1.4em 0 1.6em;
+  &:before  {
+    content:"Editor's Note: ";
+    color: #CA4D1D;
+    padding-right: 3px;
+  }
 }
 
 // Addresses
