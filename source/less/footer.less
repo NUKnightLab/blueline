@@ -3,6 +3,7 @@ footer {
   background-color: #F3F3F3;
   border-bottom: 12px solid #520063;
   padding-top: 10px;
+
 	#footer-wrapper {
 	    margin: 0;
 	    padding: 0;
@@ -66,12 +67,39 @@ footer {
       float: right;
       li {
         float: left;
-        font-size: 2.7em;
+        font-size: 1.7em;
         line-height: 1.4em;
         padding-bottom: 3px;
-        a:hover {
-          text-decoration: none;
-          opacity: .9;
+        a {
+          color: #333;
+
+          &:hover {
+            text-decoration: none;
+            opacity: .9;
+          }
+        }
+
+        .icontumblr:after, 
+        .iconemail:after, 
+        .iconrss:after {
+          background: url("../img/icon-tumblr.png") no-repeat scroll center center transparent;
+          content: " ";
+          display: block;
+          float: left;
+          height: 27px;
+          margin-left: 0.30em;
+          margin-top: -1.2em;
+          position: absolute;
+          width: 26px;
+        }
+
+        .iconemail:after {
+         background-image: url("../img/icon-email.png");
+         width: 25px;
+         margin-left: 0.33em;
+        }
+        .iconrss:after {
+         background-image: url("../img/icon-rss.png");
         }
       }
     }

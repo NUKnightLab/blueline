@@ -21,7 +21,8 @@ var jsfiles = [
   'bootstrap-scrollspy.js',
   'bootstrap-tab.js',
   'bootstrap-typeahead.js',
-  'bootstrap-affix.js' 
+  'bootstrap-affix.js',
+  'blueline-preheader.js' 
 ].map(function (file) { return "source/js/" + file; });
 
 module.exports = function(grunt) {
