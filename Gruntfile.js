@@ -150,7 +150,7 @@ module.exports = function(grunt) {
             src: [
               '.htaccess',
               '**/*.{ico,txt,html}',
-              '{css,img,js}/**'
+              '{assets,css,img,js}/**'
             ]
           },
           {
