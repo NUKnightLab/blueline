@@ -1,14 +1,29 @@
 .logo {
+  background: top left transparent no-repeat url(../../../guide/assets/logos/logo_horizontal_NOtagline_383x91_transparent_NOpadding.png);
+  text-indent: -999999px;
   display: inline-block;
-  background: url(../../../guide/assets/logos/logo_horizontal_NOtagline_383x91_transparent_NOpadding.png);
   width: 383px;
   height: 91px;
-  text-indent: -999999px;
+  &.horizontal {
     &.tagline {
-      display: inline-block;
-      background: url(../../../guide/assets/logos/logo_horizontal_400x120_transparent_NOpadding.png);
+      background-image: url(../../../guide/assets/logos/logo_horizontal_400x120_transparent_NOpadding.png);
       width: 400px;
       height: 120px;
-      text-indent: -999999px;
     }
+  }
+  &.stacked {
+    background-image: url(../../../guide/assets/logos/logo_stacked_256x256_NOtagline_transparent_padded.png);
+    width: 256px;
+    height: 256px;
+    &.tagline {
+      background-image: url(../../../guide/assets/logos/logo_stacked_320x350_transparent_padded.png);
+      height: 350px;
+      width: 320px;
+    }
+  }
+  &.diamond {
+    background-image: url(../../../guide/assets/logos/logo_diamond_256x256_transparent_padded.png);
+    width: 256px;
+    height: 256px;
+  }
 }
