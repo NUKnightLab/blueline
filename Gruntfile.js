@@ -171,11 +171,40 @@ module.exports = function(grunt) {
     clean: {
       dist: '<%= blueline.build %>'
     },
+
+    // Package header
+    concat: {
+      options: {
+        stripBanners: true,
+        banner: '/* <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
+        '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+        '<%= pkg.homepage ? " * " + pkg.homepage : "" %>\n' +
+        ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;\n' +
+        ' */\n'
+      },
+      js: {
+        src: ['<%= blueline.build %>/js/blueline.js'],
+        dest: '<%= blueline.build %>/js/blueline.js'
+      },
+      jsMin: {
+        src: ['<%= blueline.build %>/js/blueline.min.js'],
+        dest: '<%= blueline.build %>/js/blueline.min.js'
+      },
+      css: {
+        src: ['<%= blueline.build %>/css/blueline.css'],
+        dest: '<%= blueline.build %>/css/blueline.css'
+      },
+      cssMin: {
+        src: ['<%= blueline.build %>/css/blueline.min.css'],
+        dest: '<%= blueline.build %>/css/blueline.min.css'
+      }
+    },
   });
 
   // Load
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -186,7 +215,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-s3');
 
   // Tasks
-  grunt.registerTask('build', ['clean',  'copy', 'recess', 'uglify', 'usemin']);
+  grunt.registerTask('build', ['clean',  'copy', 'recess', 'uglify', 'usemin', 'concat']);
   grunt.registerTask('deploy', ['build', 's3']);
   grunt.registerTask('server', ['livereload-start', 'connect', 'regarde']);
   grunt.registerTask('livereload-less', function () {

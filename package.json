@@ -1,6 +1,8 @@
 {
-  "name": "blueline",
+  "name": "Blueline",
   "version": "0.1.0",
+  "author": "Knight Lab",
+  "homepage": "http://blueline.knightlab.com",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.0",
@@ -16,5 +18,8 @@
     "grunt-regarde": "~0.1.1",
     "grunt-usemin": "~0.1.9",
     "grunt-s3": "https://github.com/NUKnightLab/grunt-s3/archive/master.tar.gz"
+  },
+  "dependencies": {
+    "grunt-contrib-concat": "~0.2.0"
   }
 }
