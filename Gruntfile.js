@@ -78,7 +78,7 @@ module.exports = function(grunt) {
           compile: true
         },
         files: {
-          '<%= blueline.build %>/blueline.css': ['<%= blueline.source %>/less/blueline.less'],
+          '<%= blueline.build %>/css/blueline.css': ['<%= blueline.source %>/less/blueline.less'],
           '<%= blueline.build %>/css/guide.css': ['<%= blueline.guide %>/less/guide.less']
         }
       },
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
           compress: true 
         },
         files: {
-          '<%= blueline.build %>/blueline.min.css': ['<%= blueline.source %>/less/blueline.less']
+          '<%= blueline.build %>/css/blueline.min.css': ['<%= blueline.source %>/less/blueline.less']
         }
       }
     },
@@ -101,12 +101,12 @@ module.exports = function(grunt) {
           preserveComments: true
         },
         files: {
-          '<%= blueline.build %>/blueline.js': jsfiles
+          '<%= blueline.build %>/js/blueline.js': jsfiles
         }
       },
       compressed: {
         files: {
-          '<%= blueline.build %>/blueline.min.js': jsfiles
+          '<%= blueline.build %>/js/blueline.min.js': jsfiles
         }
       }
     },
@@ -117,7 +117,7 @@ module.exports = function(grunt) {
         key: '<%= knightlab.s3.key %>',
         secret: '<%= knightlab.s3.secret %>',
         bucket: 'blueline.knightlab.com',
-        access: 'public-read',
+        access: 'public-read'
       },
       dist: {
         upload: [
@@ -158,7 +158,10 @@ module.exports = function(grunt) {
             dot: true,
             cwd: '<%= blueline.source %>',
             dest: '<%= blueline.build %>',
-            src: ['img/**']
+            src: [
+              '*.html',
+              '{img,font}/**'
+            ]
           }
         ]
       }
