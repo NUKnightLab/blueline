@@ -132,7 +132,7 @@ module.exports = function(grunt) {
 
     // Usemin
     usemin: {
-      html: ['<%= blueline.build %>/index.html'],
+      html: ['<%= blueline.build %>/**/*.html'],
       options: {
         dirs: ['<%= blueline.build %>']
       }
@@ -149,7 +149,7 @@ module.exports = function(grunt) {
             dest: '<%= blueline.build %>',
             src: [
               '.htaccess',
-              '*.{ico,txt,html}',
+              '**/*.{ico,txt,html}',
               '{css,img,js}/**'
             ]
           },
