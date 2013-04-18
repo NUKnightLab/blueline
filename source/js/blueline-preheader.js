@@ -58,7 +58,7 @@
   }
 
   $.fn.preheader.defaults = {
-      target: "https://cdn.knightlab.com/libs/blueline/latest/preheader.html"
+      target: "http://cdn.knightlab.com/libs/blueline/latest/preheader.html"
     , height: 250
     , duration: 200
   }
