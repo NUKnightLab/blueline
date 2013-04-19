@@ -19,11 +19,25 @@ Assuming you are developing on Mac OS X, and that you do not already have [Homeb
 
 To begining developing Blueline:
 
+    ##########################################
+    # Note: you'll only need to do this once
+    ##########################################
+
     # Clone the repository
     git clone https://github.com/NUKnightLab/blueline.git
     cd blueline
 
-    # Run the development webserver
+And, run the development web server:
+    
+    ##########################################
+    # Note: You'll do this every time you 
+    # want to work on the project
+    ##########################################
+
+    # Make sure your NPM packages are up to date
+    npm install
+
+    # Run the server
     grunt server
 
 Files located in the `source` directory are stylesheets and assets for Blueline itself. Files located in the `guide` directory are specific to the style guide.
