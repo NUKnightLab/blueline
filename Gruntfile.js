@@ -1,29 +1,9 @@
 'use strict';
 
+// Variables
 var path = require('path'),
     port = 8000,
     lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-
-var folderMount = function folderMount(connect, point) {
-  return connect.static(path.resolve(point));
-};
-
-var jsfiles = [
-  'bootstrap-transition.js',
-  'bootstrap-alert.js',
-  'bootstrap-button.js',
-  'bootstrap-carousel.js',
-  'bootstrap-collapse.js',
-  'bootstrap-dropdown.js',
-  'bootstrap-modal.js',
-  'bootstrap-tooltip.js',
-  'bootstrap-popover.js',
-  'bootstrap-scrollspy.js',
-  'bootstrap-tab.js',
-  'bootstrap-typeahead.js',
-  'bootstrap-affix.js',
-  'blueline-preheader.js' 
-].map(function (file) { return "source/js/" + file; });
 
 module.exports = function(grunt) {
 
@@ -36,17 +16,24 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    // Configs
     pkg: grunt.file.readJSON('package.json'),
     blueline: bluelineConfig,
     knightlab: grunt.file.readJSON('knightlab.json'),
 
-    // Server
+    // Banner for the top of CSS and JS files
+    banner: '/* <%= pkg.title || pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+            ' * <%= pkg.homepage %>\n' +
+            ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;\n' +
+            ' */\n',
+
+    // Development server
     connect: {
       livereload: {
         options: {
           port: port,
           middleware: function(connect, options) {
-            return [lrSnippet, folderMount(connect, '.')]
+            return [lrSnippet, connect.static(path.resolve('.'))]
           }
         }
       }
@@ -101,12 +88,12 @@ module.exports = function(grunt) {
           preserveComments: true
         },
         files: {
-          '<%= blueline.build %>/js/blueline.js': jsfiles
+          '<%= blueline.build %>/js/blueline.js': '<%= blueline.source %>/js/*'
         }
       },
       compressed: {
         files: {
-          '<%= blueline.build %>/js/blueline.min.js': jsfiles
+          '<%= blueline.build %>/js/blueline.min.js': '<%= blueline.source %>/js/*'
         }
       }
     },
@@ -172,49 +159,27 @@ module.exports = function(grunt) {
       dist: '<%= blueline.build %>'
     },
 
-    // Package header
+    // Concat
     concat: {
       options: {
         stripBanners: true,
-        banner: '/* <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-        '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-        '<%= pkg.homepage ? " * " + pkg.homepage : "" %>\n' +
-        ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;\n' +
-        ' */\n'
+        banner: '<%= banner %>'
       },
-      js: {
-        src: ['<%= blueline.build %>/js/blueline.js'],
-        dest: '<%= blueline.build %>/js/blueline.js'
-      },
-      jsMin: {
-        src: ['<%= blueline.build %>/js/blueline.min.js'],
-        dest: '<%= blueline.build %>/js/blueline.min.js'
-      },
-      css: {
-        src: ['<%= blueline.build %>/css/blueline.css'],
-        dest: '<%= blueline.build %>/css/blueline.css'
-      },
-      cssMin: {
-        src: ['<%= blueline.build %>/css/blueline.min.css'],
-        dest: '<%= blueline.build %>/css/blueline.min.css'
+      banner: {
+        files: {
+          '<%= blueline.build %>/js/blueline.js': ['<%= blueline.build %>/js/blueline.js'],
+          '<%= blueline.build %>/js/blueline.min.js': ['<%= blueline.build %>/js/blueline.min.js'],
+          '<%= blueline.build %>/css/blueline.css': ['<%= blueline.build %>/css/blueline.css'],
+          '<%= blueline.build %>/css/blueline.min.css': ['<%= blueline.build %>/css/blueline.min.css']
+        }
       }
     },
   });
 
-  // Load
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-livereload');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-regarde');
-  grunt.loadNpmTasks('grunt-recess');
-  grunt.loadNpmTasks('grunt-open');
-  grunt.loadNpmTasks('grunt-usemin');
-  grunt.loadNpmTasks('grunt-s3');
+  // Load all Grunt task
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  // Tasks
+  // Define complex tasks
   grunt.registerTask('build', ['clean',  'copy', 'recess', 'uglify', 'usemin', 'concat']);
   grunt.registerTask('deploy', ['build', 's3']);
   grunt.registerTask('server', ['livereload-start', 'connect', 'regarde']);
