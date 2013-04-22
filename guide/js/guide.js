@@ -1,7 +1,10 @@
 $(function () {
+  var $copy = $(".copy-to-clipboard")
+    , clip = new ZeroClipboard($copy);
+
   $(".example").on("click", function () {
     var $self = $(this)
-      , $pre = $("<pre></pre>");
+      , $pre = $("<pre/>");
 
       // Clear all of the old examples
       $("pre").remove();
@@ -13,7 +16,15 @@ $(function () {
         .appendTo( $self )
         .addClass("html")
         .each(function(i, e) {hljs.highlightBlock(e)});
-  
+
+      // Prepend copy button
+      $copy
+        .prependTo($pre)
+        .show();
+
+      // Set the copy text
+      clip.setText( $pre.text() );
+
       // Make this example active
       $self.addClass("active");
 

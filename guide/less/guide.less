@@ -8,6 +8,27 @@ pre {
   background: #333;
   color: #eee;
   margin: 20px 0;
+
+  button { 
+    float: right;
+    margin-left: 20px;
+    border: 1px solid red;
+
+    &.zeroclipboard-is-active { 
+      background: #666;
+      color: white;
+    }
+  }
+
+  &:after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+
+.copy-to-clipboard {
+  display: none;
 }
 
 // Page Header
