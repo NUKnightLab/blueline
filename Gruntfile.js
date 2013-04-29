@@ -137,7 +137,7 @@ module.exports = function(grunt) {
             src: [
               '.htaccess',
               '**/*.{ico,txt,html}',
-              '{assets,css,img,js}/**'
+              '{downloads,css,img,js}/**'
             ]
           },
           {
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
             dest: '<%= blueline.build %>',
             src: [
               '*.html',
-              '{img,font}/**'
+              '{img,font,assets}/**'
             ]
           }
         ]
