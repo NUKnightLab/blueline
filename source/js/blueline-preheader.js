@@ -19,6 +19,10 @@
     this.$preheader = $(".preheader")
     this.options = $.extend({}, $.fn.preheader.defaults, options)
 
+    // Prepend to the fixed nav, if available.
+    var $fixed = this.$element.closest(".navbar-fixed-top");
+    this.$container = $fixed.length ? $fixed : $("body");
+
     if(this.$preheader.length == 0) {
       this.$preheader = $('<iframe/>')
                             .addClass("preheader")
@@ -27,7 +31,7 @@
                               , width: "100%"
                               , border: 0
                             })
-                            .prependTo(this.$element)
+                            .prependTo(this.$container)
     }
   }
 
