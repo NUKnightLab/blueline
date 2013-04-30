@@ -9,6 +9,7 @@ footer {
 	    padding: 0;
 	}
   address {
+      margin-left: 25px;
       color: #212121;
       float: left;
       width: 281px;
@@ -39,9 +40,8 @@ footer {
     a, 
     &.url {
       border: medium none;
-      display: block;
       line-height: 1.3em;
-      padding-left: 80px;
+      padding-left: 2px;
     }
     a.url {
       display: none;
@@ -61,8 +61,8 @@ footer {
     list-style: none outside none;
     margin: 0;
     &.social {
-      margin: 25px auto 0;
-      padding: 0px;
+      margin: 0px auto;
+      padding: 0 50px 0 0;
       width: 40px;
       float: right;
       li {
@@ -124,7 +124,7 @@ footer {
   #footer {
     max-width: 1140px;
     clear: both;
-    margin: 0 auto;
+    margin: 40px auto 0;
     padding: 0 25px;
   }
   .ie9 #footer-outer {
@@ -278,33 +278,27 @@ footer {
     margin: 0 auto 20px;
   }
   footer ul.social {
-    width: 294px;
+    float: left;
+    padding-left: 75px;
     padding-right: 0;
-    float: none;
+    width: 229px;
   }
-  address {
+  footer address {
     margin: 30px auto;
     padding-left: 0px;
     width: 280px;
     float: none;
+    margin-left: 0;
     text-align: left;
-  }
-  .copyright {
-    padding-left: 16px;
   }
 }
 
-@media screen and (max-width: 980px) {
-  .copyright {
-    text-align: center;
-  }
-}
 @media screen and (max-width: 650px) {
   #footer {
     padding: 0;
   }
   .copyright {
-    padding-left: 0px;
+    padding-left: 4px;
   }
   ul {
     margin-left: 0.5em;
@@ -313,14 +307,6 @@ footer {
     background-position: 0 -744px;
     width:300px;
   }
-  .address-name {
-    margin-top: 80px;
-  }
-
-  footer ul.social {
-    margin: -284px auto 234px;
-  }
-
 }
 
 @media screen and (min-width: 992px) and (max-width: 1115px) {
@@ -336,9 +322,23 @@ footer {
   }
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   footer {
     margin-right: -20px;
     margin-left: -20px;
+    ul.social {
+      float: left;
+    }
+    .copyright {
+      line-height: 1.4em;
+      padding-left: 4px;
+      padding-top: 30px;
+      text-align: left;
+    }
+  }
+}
+@media screen and (max-width: 350px) {
+  footer ul.social {
+    padding-left: 0;
   }
 }
