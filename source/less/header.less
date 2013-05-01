@@ -21,10 +21,52 @@
   border-bottom: 2px solid #272727;
 }
 
+.preheader {
+  background: #fff;
+  margin: 0 0 -8px; 
+  box-shadow: 0 1px 2px rgba(100, 100, 100, 0.3);
+}
+.navbar .nav > li.knightlab {
+    background-color: #FFFFFF;
+}
+.navbar .nav > li.knightlab  > a{
+  background-color: #FFFFFF;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 2px 2px rgba(100, 100, 100, 0.4);;
+  display: inline-block;
+  height: 51px;
+  margin-bottom: -11px;
+  padding: 0;
+  width: 162px;
+  span {
+    background-image: url("../assets/logos/logo_horizontal_NOtagline_615x205_transparent_padded.png");
+    background-origin: padding-box;
+    background-repeat: repeat;
+    background-size: cover;
+    border-radius: 0 0 10px 10px;
+    display: inline-block;
+    height: 51px;
+    margin-bottom: -11px;
+    padding: 0;
+    text-indent: -9999px;
+    width: 162px;
+  }
+}
+ 
+.navbar .nav > li.knightlab  > a span:hover {
+  opacity: .9;
+}
+
 
 @media (max-width: 767px) {
   #initiative-info {
     margin-right: -20px;
     margin-left: -20px;
   }
+}
+
+@media (min-width: 979px) {
+.navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 940px;
+}
 }
