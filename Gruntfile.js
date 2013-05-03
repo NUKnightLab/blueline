@@ -1,32 +1,31 @@
 'use strict';
-
 // Variables
 var path = require('path'),
     port = 8000,
     lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-
 module.exports = function(grunt) {
-
   // configurable paths
   var bluelineConfig = {
       source: 'source',
       guide: 'guide',
       build: 'build'
   };
-
+  // cdn configuration
+  var cdnConfig = {
+      path: path.join('..', 'cdn.knightlab.com', 'app', 'libs', 'blueline')
+  };
   // Project configuration.
   grunt.initConfig({
     // Configs
     pkg: grunt.file.readJSON('package.json'),
     blueline: bluelineConfig,
     knightlab: grunt.file.readJSON('knightlab.json'),
-
+    cdn: cdnConfig,
     // Banner for the top of CSS and JS files
     banner: '/* <%= pkg.title || pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
             ' * <%= pkg.homepage %>\n' +
             ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;\n' +
             ' */\n',
-
     // Development server
     connect: {
       livereload: {
@@ -38,14 +37,12 @@ module.exports = function(grunt) {
         }
       }
     },
-
     // Open
-    open: { 
+    open: {
       dev: {
         path: 'http://localhost:' + port + '/<%= blueline.guide %>/'
       }
     },
-
     // Regarde (Watch)
     regarde: {
       less: {
@@ -57,7 +54,6 @@ module.exports = function(grunt) {
         tasks: ['livereload']
       }
     },
-
     // RECESS (Lint and compile)
     recess: {
       uncompressed: {
@@ -72,14 +68,13 @@ module.exports = function(grunt) {
       compressed: {
         options: {
           compile: true,
-          compress: true 
+          compress: true
         },
         files: {
           '<%= blueline.build %>/css/blueline.min.css': ['<%= blueline.source %>/less/blueline.less']
         }
       }
     },
-
     // Uglify
     uglify: {
       uncompressed: {
@@ -97,7 +92,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     // S3
     s3: {
       options: {
@@ -116,7 +110,6 @@ module.exports = function(grunt) {
         ]
       }
     },
-
     // Usemin
     usemin: {
       html: ['<%= blueline.build %>/**/*.html'],
@@ -124,7 +117,6 @@ module.exports = function(grunt) {
         dirs: ['<%= blueline.build %>']
       }
     },
-
     // Copy
     copy: {
       dist: {
@@ -151,14 +143,37 @@ module.exports = function(grunt) {
             ]
           }
         ]
-      }
+      },
+      stg: {
+          files: [
+            {
+              expand: true,
+              cwd: '<%= blueline.build %>',
+              dest: path.join('<%= cdn.path %>', '<%= pkg.version %>'),
+              src: ['css/**', 'font/**', 'js/**'],
+            },
+            {
+              expand: true,
+              cwd: '<%= blueline.build %>',
+              dest: path.join('<%= cdn.path %>', 'latest'),
+              src: ['css/**', 'font/**', 'js/**'],
+            }
+          ]
+        }
     },
-
     // Clean
     clean: {
-      dist: '<%= blueline.build %>'
+      dist: '<%= blueline.build %>',
+      stg: {
+        options: {
+          force: true
+        },
+        src: [
+          path.join('<%= cdn.path %>', '<%= pkg.version %>'),
+          path.join('<%= cdn.path %>', 'latest')
+        ]
+      }
     },
-
     // Concat
     concat: {
       options: {
@@ -175,12 +190,16 @@ module.exports = function(grunt) {
       }
     },
   });
-
   // Load all Grunt task
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
+  grunt.registerTask('check_for_cdn', 'Check for cdn repository', function() {
+    // Make sure CDN repo exists
+    if(!grunt.file.exists('..', 'cdn.knightlab.com')) {
+        grunt.fatal('Could not find local cdn.knightlab.com repository.')
+    }
+  });
   // Define complex tasks
-  grunt.registerTask('build', ['clean',  'copy', 'recess', 'uglify', 'usemin', 'concat']);
+  grunt.registerTask('build', ['clean:dist',  'copy:dist', 'recess', 'uglify', 'usemin', 'concat']);
   grunt.registerTask('deploy', ['build', 's3']);
   grunt.registerTask('server', ['livereload-start', 'connect', 'regarde']);
   grunt.registerTask('livereload-less', function () {
@@ -189,4 +208,5 @@ module.exports = function(grunt) {
     grunt.task.run('livereload');
   });
   grunt.registerTask('default', ['open:dev', 'server']);
+  grunt.registerTask('stage_for_cdn', ['check_for_cdn', 'build', 'clean:stg', 'copy:stg']);
 };
