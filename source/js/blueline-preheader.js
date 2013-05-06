@@ -86,7 +86,7 @@
     // If we're using preheader in a responsive navbar,
     // and the btn-navbar is visible, we won't override the link's
     // default behavior
-    if ($(".btn-nav:visible").length) return;
+    if ($(".btn-navbar:visible").length) return;
 
     e.preventDefault()
 
