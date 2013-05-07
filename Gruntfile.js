@@ -3,6 +3,7 @@
 var path = require('path'),
     port = 8000,
     lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+
 module.exports = function(grunt) {
   // configurable paths
   var bluelineConfig = {
@@ -10,10 +11,31 @@ module.exports = function(grunt) {
       guide: 'guide',
       build: 'build'
   };
-  // cdn configuration
+  // CDN configuration
   var cdnConfig = {
       path: path.join('..', 'cdn.knightlab.com', 'app', 'libs', 'blueline')
   };
+
+  // JavaScript files
+  var jsFiles = [
+    'bootstrap-affix.js',
+    'bootstrap-alert.js',
+    'bootstrap-button.js',
+    'bootstrap-carousel.js',
+    'bootstrap-collapse.js',
+    'bootstrap-dropbown.js',
+    'bootstrap-modal.js',
+    'bootstrap-scrollspy.js',
+    'bootstrap-tab.js',
+    'bootstrap-tooltip.js',
+    'bootstrap-popover.js',
+    'bootstrap-transition.js',
+    'bootstrap-typeahead.js',
+    'blueline-preheader.js'
+  ].map(function (file) { return bluelineConfig.source + "/js/" + file; });
+
+  console.log(jsFiles)
+
   // Project configuration.
   grunt.initConfig({
     // Configs
@@ -83,12 +105,12 @@ module.exports = function(grunt) {
           preserveComments: true
         },
         files: {
-          '<%= blueline.build %>/js/blueline.js': '<%= blueline.source %>/js/*'
+          '<%= blueline.build %>/js/blueline.js': jsFiles
         }
       },
       compressed: {
         files: {
-          '<%= blueline.build %>/js/blueline.min.js': '<%= blueline.source %>/js/*'
+          '<%= blueline.build %>/js/blueline.min.js': jsFiles
         }
       }
     },
