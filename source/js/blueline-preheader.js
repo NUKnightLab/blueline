@@ -63,7 +63,7 @@
 
   $.fn.preheader.defaults = {
       target: "http://cdn.knightlab.com/libs/blueline/latest/preheader.html"
-    , height: 250
+    , height: 215
     , duration: 200
   }
 
@@ -82,6 +82,11 @@
   $(document).on('click.preheader.data-api', '[data-toggle="preheader"]', function (e) {
     var $this = $(this)
       , data = $(this).data()
+
+    // If we're using preheader in a responsive navbar,
+    // and the btn-navbar is visible, we won't override the link's
+    // default behavior
+    if ($(".btn-navbar:visible").length) return;
 
     e.preventDefault()
 

@@ -28,3 +28,34 @@
 .affix {
   position: fixed;
 }
+
+
+.navbar .nav > li {
+    padding: 0;
+}
+body {
+  padding-top: 45px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+  .navbar-fixed-top {
+    margin-bottom: 0px;
+  }
+  .navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+      padding: 0;
+  }
+  .navbar .brand {
+    margin: 6px 0 0 -5px;
+    padding: 6px 5px;
+  }
+  .navbar .btn-navbar {
+    margin-top: 11px;
+  }
+}
+@media (max-width: 767px) {
+  .navbar .brand {
+    margin: 6px 0 0;
+  }
+}
