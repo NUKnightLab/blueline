@@ -165,34 +165,37 @@ module.exports = function(grunt) {
         ]
       },
       stg: {
-          files: [
-            {
-              expand: true,
-              cwd: '<%= blueline.build %>',
-              dest: path.join('<%= cdn.path %>', '<%= pkg.version %>'),
-              src: ['css/**', 'font/**', 'js/**'],
-            },
-            {
-              expand: true,
-              cwd: '<%= blueline.build %>',
-              dest: path.join('<%= cdn.path %>', 'latest'),
-              src: ['css/**', 'font/**', 'js/**'],
-            }
-          ]
-        }
+        files: [
+          {
+            expand: true,
+            cwd: '<%= blueline.build %>',
+            dest: path.join('<%= cdn.path %>', '<%= pkg.version %>'),
+            src: ['css/**', 'font/**', 'js/**', 'preheader.html'],
+          }
+        ]
+      },
+      stgLatest: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= blueline.build %>',
+            dest: path.join('<%= cdn.path %>', 'latest'),
+            src: ['css/**', 'font/**', 'js/**', 'preheader.html'],
+          }
+        ]
+      }
     },
     // Clean
     clean: {
       dist: '<%= blueline.build %>',
       stg: {
-        options: {
-          force: true
-        },
-        src: [
-          path.join('<%= cdn.path %>', '<%= pkg.version %>'),
-          path.join('<%= cdn.path %>', 'latest')
-        ]
-      }
+        options: { force: true },
+        src: [path.join('<%= cdn.path %>', '<%= pkg.version %>')]
+      },
+      stgLatest: {
+        options: { force: true },
+        src: path.join('<%= cdn.path %>', 'latest')
+      },
     },
     // Concat
     concat: {
@@ -210,15 +213,11 @@ module.exports = function(grunt) {
       }
     },
   });
+
   // Load all Grunt task
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-  grunt.registerTask('check_for_cdn', 'Check for cdn repository', function() {
-    // Make sure CDN repo exists
-    if(!grunt.file.exists('..', 'cdn.knightlab.com')) {
-        grunt.fatal('Could not find local cdn.knightlab.com repository.')
-    }
-  });
-  // Define complex tasks
+
+  // Aliases
   grunt.registerTask('build', ['clean:dist',  'copy:dist', 'recess', 'uglify', 'usemin', 'concat']);
   grunt.registerTask('deploy', ['build', 's3']);
   grunt.registerTask('server', ['livereload-start', 'connect', 'regarde']);
@@ -227,6 +226,15 @@ module.exports = function(grunt) {
     grunt.regarde.changed.push('guide/js/less.js');
     grunt.task.run('livereload');
   });
+
+  grunt.registerTask('check-for-cdn', 'Check for CDN repository', function() {
+    // Make sure CDN repo exists
+    if(!grunt.file.exists('..', 'cdn.knightlab.com')) {
+        grunt.fatal('Could not find local cdn.knightlab.com repository.')
+    }
+  });
+  grunt.registerTask('stage', "Stage the release for deployment to the CDN", ['check-for-cdn', 'build', 'clean:stg', 'copy:stg']);
+  grunt.registerTask('stage-latest', "Stage the release for deployment to the CDN, and copy it to the latest directory", ['stage','clean:stgLatest', 'copy:stgLatest']);
+
   grunt.registerTask('default', ['open:dev', 'server']);
-  grunt.registerTask('stage_for_cdn', ['check_for_cdn', 'build', 'clean:stg', 'copy:stg']);
 };
