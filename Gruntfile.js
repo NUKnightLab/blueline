@@ -34,8 +34,6 @@ module.exports = function(grunt) {
     'blueline-preheader.js'
   ].map(function (file) { return bluelineConfig.source + "/js/" + file; });
 
-  console.log(jsFiles)
-
   // Project configuration.
   grunt.initConfig({
     // Configs
