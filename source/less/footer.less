@@ -9,7 +9,6 @@ footer {
 	    padding: 0;
 	}
   address {
-      margin-left: 25px;
       color: #212121;
       float: left;
       width: 281px;
@@ -41,7 +40,8 @@ footer {
     &.url {
       border: medium none;
       line-height: 1.3em;
-      padding-left: 2px;
+      padding-left: 80px;
+      display: block;
     }
     a.url {
       display: none;
@@ -61,8 +61,8 @@ footer {
     list-style: none outside none;
     margin: 0;
     &.social {
-      margin: 0px auto;
-      padding: 0 50px 0 0;
+      margin: 25px auto 0;
+      padding: 0;
       width: 40px;
       float: right;
       li {
@@ -124,7 +124,7 @@ footer {
   #footer {
     max-width: 1140px;
     clear: both;
-    margin: 40px auto 0;
+    margin: 0 auto;
     padding: 0 25px;
   }
   .ie9 #footer-outer {
@@ -244,6 +244,10 @@ footer {
     display: inline;
     float: none;
   }
+    footer ul.social {
+      margin: 0px auto;
+      float: none;
+  }
   footer ul {
     clear: both;
     margin-bottom: 40px;
@@ -279,18 +283,18 @@ footer {
     margin: 0 auto 20px;
   }
   footer ul.social {
-    float: left;
-    padding-left: 75px;
     padding-right: 0;
-    width: 229px;
+    width: 294px;
   }
   footer address {
     margin: 30px auto;
     padding-left: 0px;
     width: 280px;
     float: none;
-    margin-left: 0;
     text-align: left;
+  }
+  .copyright {
+    padding-left: 16px;
   }
 }
 
@@ -299,7 +303,7 @@ footer {
     padding: 0;
   }
   .copyright {
-    padding-left: 4px;
+    padding-left: 0px;
   }
   ul {
     margin-left: 0.5em;
@@ -307,6 +311,14 @@ footer {
   footer ul.logos li a.knightfoundation {
     background-position: 0 -744px;
     width:300px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .copyright {
+    text-align: center;
+  }
+    footer ul.social {
+      margin: 0px auto;
   }
 }
 
@@ -327,25 +339,5 @@ footer {
   footer {
     margin-right: -20px;
     margin-left: -20px;
-    ul.social {
-      float: left;
-    }
-    .copyright {
-      line-height: 1.4em;
-      padding-left: 4px;
-      padding-top: 30px;
-      text-align: left;
     }
   }
-}
-@media screen and (max-width: 350px) {
-  footer {
-    ul.social {
-      padding-left: 0;
-    }
-    address span.address,
-    address span.tel {
-      padding-left: 3px;
-    }
-  }
-}
