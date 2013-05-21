@@ -58,7 +58,7 @@ var _gaq = _gaq || [];
 
       if (!data) $this.data('preheader', (data = new Preheader(this, options)))
       data.toggle();
-      _gaq.push(['_trackEvent', 'Preheader', 'PreheaderToggle']);
+      _gaq.push(['knightlabTracker._trackEvent', 'Preheader', 'PreheaderToggle']);
     })
   }
 

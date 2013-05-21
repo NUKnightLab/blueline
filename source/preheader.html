@@ -47,6 +47,15 @@
   <script src="js/blueline-preheader.js"></script>
   <!-- endbuild -->
   <script>
+  var _gaq = _gaq || [];
+  _gaq.push(
+            function() {
+                var pageTracker = _gat._createTracker('UA-27829802-1', 'knightlabTracker');
+             },
+            ['knightlabTracker._setDomainName', 'knightlab.com'] // DON'T CHANGE THIS FOR SUBDOMAINS
+            ['knightlabTracker._setAllowLinker', true], 
+            ['knightlabTracker._trackPageview']
+  );
   $(document).ready(function(){
       $('a').click(function() { 
           if ($(this).attr('href')) {
