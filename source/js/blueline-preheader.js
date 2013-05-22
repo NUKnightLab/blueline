@@ -4,7 +4,7 @@
  * Slides down from the top of Knight Lab websites to reveal
  * a global navigation.
  * ========================================================== */
-
+var _gaq = _gaq || [];
 
 !function ($) {
 
@@ -58,6 +58,7 @@
 
       if (!data) $this.data('preheader', (data = new Preheader(this, options)))
       data.toggle();
+      _gaq.push(['knightlabTracker._trackEvent', 'Preheader', 'PreheaderToggle']);
     })
   }
 
