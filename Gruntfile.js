@@ -35,11 +35,18 @@ module.exports = function(grunt) {
   ].map(function (file) { return bluelineConfig.source + "/js/" + file; });
 
   // Project configuration.
+  var knightlab_config = {};
+  if (grunt.file.exists('knightlab.json')) {
+      knightlab_config = grunt.file.readJSON('knightlab.json')
+  } else {
+      grunt.log.error("No knightlab.json file found. You will not be able to deploy to S3")
+  }
+  
   grunt.initConfig({
     // Configs
     pkg: grunt.file.readJSON('package.json'),
     blueline: bluelineConfig,
-    knightlab: grunt.file.readJSON('knightlab.json'),
+    knightlab: knightlab_config,
     cdn: cdnConfig,
     // Banner for the top of CSS and JS files
     banner: '/* <%= pkg.title || pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
