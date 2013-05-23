@@ -8,8 +8,8 @@
   &.horizontal {
     &.tagline {
       background-image: url(../assets/logos/logo_horizontal_400x120_transparent_NOpadding.png);
-      width: 400px;
-      height: 120px;
+      height: 122px;
+      width: 402px;
     }
     &.logo-small {
       height: 50px;
@@ -18,17 +18,54 @@
   }
   &.stacked {
     background-image: url(../assets/logos/logo_stacked_256x256_NOtagline_transparent_padded.png);
-    width: 256px;
-    height: 256px;
+    background-size: contain;
+    height: 259px;
+    width: 259px;
     &.tagline {
       background-image: url(../assets/logos/logo_stacked_320x350_transparent_padded.png);
-      height: 350px;
-      width: 320px;
+    height: 354px;
+    width: 324px;
     }
   }
   &.diamond {
     background-image: url(../assets/logos/logo_diamond_256x256_transparent_padded.png);
     width: 256px;
     height: 256px;
+  }
+}
+
+.logo-mark {
+  font-size: 60px;
+    span {
+      background: none repeat scroll 0 0 @klBlueMed;
+      border-radius: 3px 3px 3px 3px;
+      color: #FFFFFF;
+      font-size: 0.4em;
+      line-height: 0.5em;
+      margin: 10px 0 0 6px;
+      overflow: hidden;
+      padding: 13px 16px 8px 13px;
+      position: relative;
+      vertical-align: text-top;
+      display: inline-block;
+      &:before {
+        border-color: @klBlueMed #FFFFFF;
+        border-style: solid;
+        border-width: 0 16px 16px 0;
+        content: "";
+        position: absolute;
+        right: 0;
+        top: -1px;
+    }
+    em {
+      position: relative;
+    }
+  }
+}
+
+/* logo mark padding tweak for safari/chrome only */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .logo-mark span {
+    padding: 12px 16px 9px 13px;
   }
 }
