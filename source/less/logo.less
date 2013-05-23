@@ -35,17 +35,24 @@
 }
 
 .logo-mark {
-  font-size: 200px;
+  font-size: 60px;
   white-space: nowrap;
+  line-height: 1em;
+  &.xl {
+    font-size: 90px;
+  }
+  &.xxl {
+    font-size: 120px;
+  }
     span {
       background: none repeat scroll 0 0 @klBlueMed;
       border-radius: 3px 0px 3px 3px;
       color: #FFFFFF;
       font-size: 0.5em;
       line-height: 0.5em;
-      margin: 5px 0 0 6px;
+      margin: 5px 6px 0;
       overflow: hidden;
-      padding: 0.35em 0.5em 0.2em;
+      padding: 0.35em 0.45em 0.2em;
       position: relative;
       vertical-align: text-top;
       display: inline-block;
@@ -67,6 +74,6 @@
 /* logo mark padding tweak for safari/chrome only */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   .logo-mark span {
-    padding: .35em .5em .3em .43em;
+    padding: 0.35em .47em .3em .36em;
   }
 }
