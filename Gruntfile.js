@@ -1,5 +1,9 @@
 'use strict';
+// Node 0.10+ doesn't like the way AWS buckets work with TLS. (for grunt deploy) We aren't worried about it. 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 // Variables
+
 var path = require('path'),
     port = 8000,
     lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
