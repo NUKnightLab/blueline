@@ -76,8 +76,8 @@ h2,
 h3 { line-height: @baseLineHeight * 2; }
 
 h1 { font-size: @baseFontSize * 2.75; } // ~38px
-h2 { font-size: @baseFontSize * 2.25; } // ~32px
-h3 { font-size: @baseFontSize * 1.75; } // ~24px
+h2 { font-size: @baseFontSize * 2.15; } // ~32px
+h3 { font-size: @baseFontSize * 1.45; } // ~24px
 h4 { font-size: @baseFontSize * 1.25; } // ~18px
 h5 { font-size: @baseFontSize; }
 h6 { font-size: @baseFontSize * 0.85; } // ~12px
@@ -115,6 +115,23 @@ h4, h5, h6 {
 }
 h6 {
   text-transform: uppercase;
+}
+
+h2.intro {
+  clear: both;
+  color: #CA5529;
+  background: -webkit-linear-gradient(left top, rgb(215,103,56) 17%, rgb(187,62,37) 37%, rgb(187,62,37) 54%, rgb(255,134,84) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: @sansFontFamily;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: lighter;
+  height: auto;
+  line-height: 1.2em;
+  margin: 40px auto;
+  max-width: 1140px;
+  text-indent: 0;
 }
 
 // Page header
