@@ -36,6 +36,41 @@
 body {
   padding-top: 45px;
 }
+
+// custom accordion icons
+.accordion-toggle { 
+  &:before {
+    content: "\f068";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    color: @klOrangeType;
+  }
+  &.collapsed:before { 
+    content: "\f067";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    color: @klOrangeType;
+  }
+  &:hover,
+  &:focus {
+    &:before {
+      text-decoration: none;
+    }
+    &.collapsed:before { 
+      text-decoration: none;
+    }
+  }
+}
+.accordion-inner {
+    border-top: 1px solid #F5F5F5;
+}
+
 @media (max-width: 979px) {
   body {
     padding-top: 0px;

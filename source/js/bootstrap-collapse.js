@@ -161,6 +161,9 @@
         || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
       , option = $(target).data('collapse') ? 'toggle' : $this.data()
     $this[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
+    // begin fix (https://github.com/twitter/bootstrap/issues/7213)
+    $($this.attr('data-parent')).find('.accordion-toggle[href!=' + target +']').addClass('collapsed')
+    // end fix
     $(target).collapse(option)
   })
 
