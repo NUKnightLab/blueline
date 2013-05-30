@@ -38,9 +38,13 @@ body {
 }
 
 // custom accordion icons
-.accordion-toggle { 
+.accordion-toggle {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  } 
   &:before {
-    content: "\f068";
+    content: "\f068 \0000a0\0000a0";
     font-family: FontAwesome;
     font-size: 0.7em;
     font-weight: normal;
@@ -50,7 +54,7 @@ body {
     color: @klOrangeType;
   }
   &.collapsed:before { 
-    content: "\f067";
+    content: "\f067 \0000a0\0000a0";
     font-size: 0.7em;
     font-family: FontAwesome;
     font-weight: normal;
