@@ -4,6 +4,7 @@
 
 
 .hero-unit {
+  text-align: center;
   padding: 60px;
   margin-bottom: 30px;
   font-size: 18px;
@@ -22,4 +23,12 @@
   li {
     line-height: @baseLineHeight * 1.5; // Reset since we specify in type.less
   }
+
+  &.compact {
+    margin-bottom: 0;
+    padding: 30px;
+  }
+}
+.container .hero-unit {
+  background-color: transparent;
 }
