@@ -68,3 +68,34 @@
     width: 940px;
 }
 }
+
+@media (max-width: 979px) {
+  .knightlab-tab {
+      background-color: transparent;
+  }
+  .knightlab-tab  > a{
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    display: inline-block;
+    height: auto;
+    margin-bottom: 0;
+    padding: 9px 15px !important;
+    width: auto;
+    span {
+      background-image: none;
+      background-color: transparent;
+      border-radius: 0;
+      display: inline;
+      margin-bottom: 0;
+      padding: 0;
+      text-indent: 0;
+    }
+  }
+  .knightlab-tab  > a:hover  {
+    background-color: transparent !important;
+  }
+  .knightlab-tab  > a:hover span {
+    opacity: 1;
+  }
+}
