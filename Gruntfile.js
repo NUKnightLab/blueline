@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     'bootstrap-button.js',
     'bootstrap-carousel.js',
     'bootstrap-collapse.js',
-    'bootstrap-dropbown.js',
+    'bootstrap-dropdown.js',
     'bootstrap-modal.js',
     'bootstrap-scrollspy.js',
     'bootstrap-tab.js',
