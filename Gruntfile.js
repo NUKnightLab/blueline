@@ -181,7 +181,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: '<%= blueline.build %>',
             dest: path.join('<%= cdn.path %>', '<%= pkg.version %>'),
-            src: ['css/**', 'font/**', 'js/**', 'preheader.html'],
+            src: ['css/**', 'font/**', 'js/**', 'assets/**', 'img/**', 'preheader.html'],
           }
         ]
       },
@@ -191,7 +191,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: '<%= blueline.build %>',
             dest: path.join('<%= cdn.path %>', 'latest'),
-            src: ['css/**', 'font/**', 'js/**', 'preheader.html'],
+            src: ['css/**', 'font/**', 'js/**', 'assets/**', 'img/**', 'preheader.html'],
           }
         ]
       }
