@@ -287,7 +287,7 @@ def _usemin(src, regex=None):
 def serve(port='8000'):
     """Run livereload"""
     with lcd(join(env.project_path)):
-        local('livereload -p %s' % port)
+        local('livereload -b -p %s' % port)
  
 
 @task
