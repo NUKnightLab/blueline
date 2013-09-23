@@ -375,7 +375,7 @@ def stage():
 
     _clean(cdn_path)
     _copy(env.build_path, cdn_path, 
-        re.compile(r'(assets/.*|css/.*|font/.*|js/.*|preheader\.html|ZeroClipboard\.swf)$'))
+        re.compile(r'(img/.*|assets/.*|css/.*|font/.*|js/.*|preheader\.html|ZeroClipboard\.swf)$'))
 
     if not DEBUG:
         with lcd(env.project_path):
