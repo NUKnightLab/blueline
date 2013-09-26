@@ -306,7 +306,7 @@ def build():
     
     # copy
     _copy(join(env.project_path, 'guide'), env.build_path,
-        re.compile(r'(css/.*|downloads/.*|js/.*|.*\.(ico|txt|html|swf))$'))
+        re.compile(r'(docs/.*|css/.*|downloads/.*|js/.*|.*\.(ico|txt|html|swf))$'))
     _copy(join(env.project_path, 'source'), env.build_path,
         re.compile(r'(assets/.*|font/.*|img/.*|.*\.html)$'))
     
