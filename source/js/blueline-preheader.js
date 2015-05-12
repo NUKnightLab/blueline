@@ -63,7 +63,7 @@ var _gaq = _gaq || [];
   }
 
   $.fn.preheader.defaults = {
-      target: "http://cdn.knightlab.com/libs/blueline/latest/preheader.html"
+      target: "//cdn.knightlab.com/libs/blueline/latest/preheader.html"
     , height: 215
     , duration: 200
   }
